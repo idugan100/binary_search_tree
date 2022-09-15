@@ -6,13 +6,17 @@
 
 
 template <typename T>
-int countOneChild(tnode<T> *t){
-    
-   if((t->left==NULL &&t->right!=NULL)||(t->left!=NULL && t->right==NULL)){
-    return 1+countOneChild(t->left)+countOneChild(t->right);
-   }
-   else{
-    return 0+countOneChild(t->left)+countOneChild(t->right);
-   }
+void countOneChild(tnode<T> *t,int& count){
+    if (t!=nullptr){
+        
+
+        if((t->left==NULL && t->right!=NULL)||(t->left!=NULL && t->right==NULL)){
+            cout<<"adding to count becuase "<<t->nodeValue<<" is an interior node with one child"<<endl;
+            count++;
+        }
+        countOneChild(t->left,count);
+        countOneChild(t->right,count);
+    }
+   
 
 }
